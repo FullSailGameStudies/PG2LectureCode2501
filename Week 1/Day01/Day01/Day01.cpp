@@ -4,6 +4,7 @@
 #include "Calculator.h"
 #include "Console.h"
 #include "Input.h"
+#include <Menu.h>
 
 int AddOne(int localNumber)
 {
@@ -41,7 +42,14 @@ int main()
         2) if the method returns data, it is usually best to store that data in a variable on the line where you call the method.
 
     */
+    double d1 = 5.2;
+    double d2 = 12.7;
+    double multResult = Calculator::mult(d1, d2);
+    Calculator t800;//creating a calculator object
+    int minusResult = t800.minus(5, 2);
+    float addResult = t800.add(123.235, 4612.1);
 
+    int minus(int number1, int number2);
     /*
         ╔══════════════════════════╗
         ║Parameters: Pass by Value.║
@@ -74,6 +82,10 @@ int main()
             Call the method on the t1000 calculator instance and print the results.
 
     */
+    bool even = t800.isEven(5);
+    even = t800.isEven(number);
+
+    int rando = t800.randoNumber();
 
 
 
@@ -100,10 +112,21 @@ int main()
     names.push_back("The Greatest Detective");
     names.push_back("The Bat");
     names.push_back("The Joker");
-    names.push_back("Bane");
+    names.push_back("Bane");//index 6
     names.push_back("Poison Ivy");
+    names.erase(names.begin() + 6);//begin + index
 
+    Menu menu;
+    menu.AddMenuItem("scrambled eggs");
+    menu.AddMenuItem("pizza");
 
+    do
+    {
+        std::string usersItem = Input::GetString("Menu item to add: ");
+        //if user doesn't enter anything, exit the loop
+        if (usersItem.empty()) break;
+        menu.AddMenuItem(usersItem);
+    } while (true);
     /*
         CHALLENGE:
 
