@@ -4,140 +4,191 @@
 
 bool postFix(std::string& hero)
 {
-    srand((unsigned int)time(NULL));
-    int postFixNumber = rand() % 1000;
-    hero = hero + "-" + std::to_string(postFixNumber);
-    return postFixNumber % 2 == 0;
+	srand((unsigned int)time(NULL));
+	int postFixNumber = rand() % 1000;
+	hero = hero + "-" + std::to_string(postFixNumber);
+	return postFixNumber % 2 == 0;
 }
 
 float average(const std::vector<int>& scores)
 {
-    //scores.push_back(5); //not allowed because it is marked as const
-    float sum = 0;
-    for (auto score : scores)
-        sum += score;
+	//scores.push_back(5); //not allowed because it is marked as const
+	float sum = 0;
+	for (auto score : scores)
+		sum += score;
 
-    return sum / scores.size();
+	return sum / scores.size();
 }
 
 void print(const std::vector<int>& scores)
 {
-    std::cout << "----SCORES----\n";
-    int index = 1;
-    for (int score : scores)
-        std::cout << index++ << ". " << score << "\n";
+	std::cout << "----SCORES----\n";
+	int index = 1;
+	for (int score : scores)
+		std::cout << index++ << ". " << score << "\n";
 }
 
 void printInfo(const std::vector<int>& scores)
 {
-    std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
+	std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
+}
+
+int Add(int& n1, int& n2)
+{
+	n1++;
+	return n1 + n2;
+}
+int Sum(std::vector<int>& numbers)
+{
+	int sum = 0;
+	for (int i = 0; i < numbers.size(); i++)
+	{
+		sum += numbers.at(i);
+	}
+	return sum;
+}
+void PrintMe(std::string& name)
+{
+
+}
+
+void FillGrades(std::vector<float>& course)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		course.push_back(rand() % 10001 / 100.0f);
+	}
+}
+void PrintGrades(const std::vector<float>& grades)
+{
+	//grades.clear();
+	std::cout << "\nPG2 grades for January 2025\n";
+	for (auto& grade : grades)
+	{
+		std::cout << "\t" << grade << "\n";
+	}
+	std::cout << "\n\n";
 }
 
 int main()
 {
-    /*
-        ╔══════════════════════════════╗
-        ║Parameters: Pass by Reference.║
-        ╚══════════════════════════════╝
-        Sends the variable itself to the method. The method parameter gives the variable a NEW name (i.e. an alias)
+	srand((unsigned int)time(NULL));
 
-        NOTE: if the method assigns a new value to the parameter, the variable used when calling the method will change too.
-            This is because the parameter is actually just a new name for the other variable.
-    */
-    std::string spider = "Spiderman";
-    bool isEven = postFix(spider);
-    std::string evenResult = (isEven) ? "TRUE" : "FALSE";
-    std::cout << spider << "\n" << "Is Even postfix? " << evenResult << "\n";
+	int num1 = 5, num2 = 2;
+	int iResult = Add(num1, num2);
+	//iResult = Add(125, 22);
 
+	std::vector<int> nums{ 1,2,3,4,5,6,7,8 };
 
-    /*
-        CHALLENGE 1:
+	int& n1 = num1;//n1 is a reference to the num1 variable
 
-            Write a method to fill the vector of floats with grades.
-            1) pass it in by reference
-            2) add 10 grades to the vector
+	int sum = Sum(nums);
 
-    */
-    std::vector<float> grades;
+	/*
+		╔══════════════════════════════╗
+		║Parameters: Pass by Reference.║
+		╚══════════════════════════════╝
+		Sends the variable itself to the method. The method parameter gives the variable a NEW name (i.e. an alias)
 
-
-
-    /*
-        ╔══════════════════╗
-        ║ const parameters ║
-        ╚══════════════════╝
-        const is short for constant. It prevents the variable from being changed in the method.
-
-        This is the way you pass by reference and prevent the method from changing the variable.
-    */
-    std::vector<int> highScores;
-    for (int i = 0; i < 10; ++i)
-    {
-        highScores.push_back(rand() % 5000);
-        printInfo(highScores);//size: ?  capacity: ?
-    }
-    float avg = average(highScores);
+		NOTE: if the method assigns a new value to the parameter, the variable used when calling the method will change too.
+			This is because the parameter is actually just a new name for the other variable.
+	*/
+	std::string spider = "Spiderman";
+	bool isEven = postFix(spider);
+	std::string evenResult = (isEven) ? "TRUE" : "FALSE";
+	std::cout << spider << "\n" << "Is Even postfix? " << evenResult << "\n";
 
 
+	/*
+		CHALLENGE 1:
 
-    /*
-        CHALLENGE 2:
+			Write a method to fill the vector of floats with grades.
+			1) pass it in by reference
+			2) add 10 grades to the vector
+			3) after calling the method in main, print the vector of grades
 
-            Write a method to calculate the stats on a vector of grades
-            1) create a method to calculate the min, max. 
-                pass the grades vector as a const reference. Use ref parameters for min and max.
-            2) call the method in main and print out the min, max.
-
-    */
-
-
+	*/
+	std::vector<float> grades;
+	FillGrades(grades);
+	PrintGrades(grades);
 
 
+	/*
+		╔══════════════════╗
+		║ const parameters ║
+		╚══════════════════╝
+		const is short for constant. It prevents the variable from being changed in the method.
 
-    /*
-        ╔═══════════╗
-        ║ vector<T> ║
-        ╚═══════════╝
-
-        [  Removing from a vector  ]
-
-        clear() - removes all elements from the vector
-        erase(position) - removes the element at the position
-        erase(starting position, ending position) - removes a range of elements. the end position is not erased.
-
-    */
-    print(highScores);
-
-    //erase all scores < 2500
-
-    print(highScores);
+		This is the way you pass by reference and prevent the method from changing the variable.
+	*/
+	std::vector<int> highScores;
+	for (int i = 0; i < 10; ++i)
+	{
+		highScores.push_back(rand() % 5000);
+		printInfo(highScores);//size: ?  capacity: ?
+	}
+	float avg = average(highScores);
 
 
 
-    /*
-        CHALLENGE 3:
+	/*
+		CHALLENGE 2:
 
-            Using the vector of grades you created.
-            Remove all the failing grades (grades < 59.5).
-            Print the grades.
-    */
+			Write a method to calculate the stats on a vector of grades
+			1) create a method to calculate the min, max.
+				pass the grades vector as a const reference. Use ref parameters for min and max.
+			2) call the method in main and print out the min, max.
+
+	*/
 
 
 
 
 
-    /*
-        ╔═══════════╗
-        ║ vector<T> ║
-        ╚═══════════╝
+	/*
+		╔═══════════╗
+		║ vector<T> ║
+		╚═══════════╝
 
-        
-        size(): # of items that have been ADDED
-        capacity(): length of the internal array
-        reserve(n): presizes the internal array
-    */
-    std::vector<int> scores;
-    scores.reserve(10); //makes the internal array to hold 10 items.
+		[  Removing from a vector  ]
 
-    printInfo(scores);
+		clear() - removes all elements from the vector
+		erase(position) - removes the element at the position
+		erase(starting position, ending position) - removes a range of elements. the end position is not erased.
+
+	*/
+	print(highScores);
+
+	//erase all scores < 2500
+
+	print(highScores);
+
+
+
+	/*
+		CHALLENGE 3:
+
+			Using the vector of grades you created.
+			Remove all the failing grades (grades < 59.5).
+			Print the grades.
+	*/
+
+
+
+
+
+	/*
+		╔═══════════╗
+		║ vector<T> ║
+		╚═══════════╝
+
+
+		size(): # of items that have been ADDED
+		capacity(): length of the internal array
+		reserve(n): presizes the internal array
+	*/
+	std::vector<int> scores;
+	scores.reserve(10); //makes the internal array to hold 10 items.
+
+	printInfo(scores);
 }
