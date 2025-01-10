@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 #include <vector>
+#include "FullSailCourse.h"
 
 bool postFix(std::string& hero)
 {
@@ -30,6 +31,7 @@ void print(const std::vector<int>& scores)
 
 void printInfo(const std::vector<int>& scores)
 {
+	//size will always be <= capacity
 	std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
 }
 
@@ -122,7 +124,9 @@ int main()
 		This is the way you pass by reference and prevent the method from changing the variable.
 	*/
 	std::vector<int> highScores;
-	for (int i = 0; i < 10; ++i)
+	highScores.reserve(10);
+	printInfo(highScores);//size: null?  capacity: ?
+	for (int i = 0; i < 17; ++i)
 	{
 		highScores.push_back(rand() % 5000);
 		printInfo(highScores);//size: ?  capacity: ?
@@ -136,10 +140,15 @@ int main()
 
 			Write a method to calculate the stats on a vector of grades
 			1) create a method to calculate the min, max.
-				pass the grades vector as a const reference. Use ref parameters for min and max.
+				Use ref parameters for min and max.
 			2) call the method in main and print out the min, max.
 
 	*/
+	FullSailCourse pg2("PG2");
+	pg2.PrintGrades();
+	float minGrade, maxGrade;
+	pg2.CalcStats(minGrade, maxGrade);
+	std::cout << "Min: " << minGrade << "\tMax: " << maxGrade << "\n";
 
 
 
@@ -160,6 +169,36 @@ int main()
 	print(highScores);
 
 	//erase all scores < 2500
+	for (int i = 0; i < highScores.size(); i++)
+	{
+		if (highScores.at(i) < 2500)
+		{
+			highScores.erase(highScores.begin() + i);
+			i--;//decrement i after erasing
+		}
+	}
+	//OR...
+	for (int i = 0; i < highScores.size(); )
+	{
+		if (highScores.at(i) < 2500)
+		{
+			highScores.erase(highScores.begin() + i);
+		}
+		else //only increment i when you do not erase
+			i++;
+	}
+	//OR...
+	for (auto i = highScores.begin(); i != highScores.end(); )
+	{
+		if ((*i) < 2500)
+		{
+			i = highScores.erase(i);
+		}
+		else //only increment i when you do not erase
+			i++;
+	}
+
+
 
 	print(highScores);
 
