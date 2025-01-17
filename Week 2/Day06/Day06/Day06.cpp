@@ -13,6 +13,16 @@ enum class Weapon
 };
 
 
+void PrintGrades(const std::map<std::string, double>& grades)
+{
+    std::cout << "\nDC Grades\n";
+    for (auto& [student,grade] : grades)
+    {
+        std::cout << std::setw(10) << std::left << student;
+        std::cout << std::setw(4) << std::right << grade << "\n";
+    }
+}
+
 int main()
 {
 
@@ -27,20 +37,20 @@ int main()
         erase(key) -- returns the # of items removed
 
     */
-    std::map<Weapon, int> backpack;
-    auto inserted = backpack.insert(std::make_pair(Weapon::Sword, 5));
-    backpack[Weapon::Axe] = 3;
+    std::map<Weapon, int> dorasBackpack;
+    auto inserted = dorasBackpack.insert(std::make_pair(Weapon::Sword, 5));
+    dorasBackpack[Weapon::Axe] = 3;
 
-    size_t numberRemoved = backpack.erase(Weapon::Sword);
+    size_t numberRemoved = dorasBackpack.erase(Weapon::Sword);
     if (numberRemoved > 0)
         std::cout << "The Swords were removed.\n";
     else
         std::cout << "Sword was not found in the map.\n";
 
-    std::map<Weapon, int>::iterator found = backpack.find(Weapon::Axe);
-    if (found != backpack.end())
+    std::map<Weapon, int>::iterator found = dorasBackpack.find(Weapon::Axe);
+    if (found != dorasBackpack.end())
     {
-        backpack.erase(found);
+        dorasBackpack.erase(found);
         std::cout << "The Axes were removed.\n";
     }
     else
@@ -73,4 +83,18 @@ int main()
     grades["Clark"] = rand() % 101;
     grades["Arthur"] = rand() % 101;
     grades["Barry"] = rand() % 101;
+
+    PrintGrades(grades);
+    std::cout << "Student to drop: ";
+    std::string student;
+    std::getline(std::cin, student);
+    auto foundStudent = grades.find(student);
+    if (foundStudent == grades.end())
+        std::cout << student << " was not in the course.\n";
+    else
+    {
+        std::cout << student << " had a grade of " << foundStudent->second << ".\n";
+        grades.erase(foundStudent);
+        PrintGrades(grades);
+    }
 }
