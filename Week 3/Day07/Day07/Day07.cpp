@@ -2,6 +2,10 @@
 //
 
 #include <iostream>
+#include "Person.h"
+#include "Sword.h"
+#include "color.h"
+#include <vector>
 
 
 /*              CLASSESS
@@ -55,8 +59,25 @@ int main()
             Create a Person class.
             Right-Click the project and select "Add > Class..."
 
+   
+        CHALLENGE:
+            Add an age field and a name field to the Person class
+    
+        CHALLENGE:
+            write an ItsMyBirthday method. 
+            increment age and print out a happy message.
     */
+    //creating an instance
+    Person steev("Steev Rodgers", 12);
+    //steev.Age(12);
+    //steev.Name("Steev Rodgers");
+    steev.ItsMyBirthday();
 
+    Sword sting(1.0f, 18, "Sting");
+
+    std::vector<Sword> swords;
+
+    color carColor;
 
 
 
@@ -72,12 +93,6 @@ int main()
         Lecture code: add year, make, model fields to the car class
 
     */
-
-    /*
-        CHALLENGE:
-            Add an age field and a name field to the Person class
-    */
-
 
 
 
@@ -100,10 +115,6 @@ int main()
     */
 
 
-    /*
-        CHALLENGE:
-            write an ItsMyBirthday method. increment age and print out a happy message.
-    */
 
 
 
