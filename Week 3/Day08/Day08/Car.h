@@ -5,13 +5,13 @@
 class Car
 {
 public:
-	Car() : mMake("Ford"), mModel("A"), mModelYear(1908), mFuelLevel(0), mMaxFuelLevel(15)
-	{   }
+	//Car() : mMake("Ford"), mModel("A"), mModelYear(1908), mFuelLevel(0), mMaxFuelLevel(15)
+	//{   }
 
 	Car(int year, std::string make, std::string model)
 		: mModelYear(year), mMake(make), mModel(model), mFuelLevel(0), mMaxFuelLevel(15)
 	{	}
-	std::string vehicleInformation();
+	virtual std::string vehicleInformation();
 
 	void refuel()
 	{
@@ -39,7 +39,7 @@ public:
 		std::cout << "Number of cars made: " << mNumberOfCarsMade << "\n";
 	}
 
-protected:
+private:
 	int mModelYear;
 	std::string mModel;
 	std::string mMake;

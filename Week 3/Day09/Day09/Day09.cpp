@@ -2,6 +2,9 @@
 //
 
 #include <iostream>
+#include "Pistol.h"
+#include <vector>
+#include "Knife.h"
 
 
 class base
@@ -59,6 +62,53 @@ int Car::mNumberOfCarsMade = 0;
 
 int main()
 {
+	{
+		// a pointer is a variable that holds a memory address
+		int num = 5;
+		int* pNum = &num;//stores a memory address in pNum
+		std::cout << num << "\n" << pNum << "\n";
+
+		//dereference the pointer to access the value
+		//  * on the variable
+		std::cout << *pNum << "\n";
+
+		int* pHeapNum = new int(10);//raw pointer
+		delete pHeapNum;//release the heap memory
+
+		std::unique_ptr<int> pUNum = std::make_unique<int>(15);
+	}//the variables are popped from the stack
+
+	std::unique_ptr<Car> todaysRide = std::make_unique<Car>(2025);
+	// dereference with * or with ->
+	todaysRide->vehicleInfo();
+
+	std::unique_ptr<Pistol> myGun = std::make_unique<Pistol>(100, 200, 10, 2);
+	std::unique_ptr<Weapon> myWeapon =std::move(myGun);
+	myGun->calcDamage();
+
+	Knife stabby(5, 10, 18);
+	Pistol pewpew(100, 200, 10, 5);
+
+	Car myRide(1988);
+	//UPCASTING. ALWAYS safe
+	Weapon* currentWeapon = &stabby;//creates a pointer to the Knife object
+
+
+
+
+	std::vector<std::unique_ptr<Weapon>> weapons;
+	weapons.push_back(std::make_unique<Knife>(5, 10, 18));
+	weapons.push_back(std::make_unique<Pistol>(100, 200, 10, 5));
+	weapons.push_back(std::move(myWeapon));
+
+	std::cout << "\nMy Inventory...\n";
+	for (auto& wpn : weapons)
+	{
+		wpn->showMe();
+		std::cout << "\n";
+	}
+
+	std::cin.get();
 
 	/*
 		╔════════════╗
@@ -130,7 +180,7 @@ int main()
 		That's also why static methods cannot access non-static members.
 
 	*/
-	Car myRide(1988);
+	Car myRide2(1988);
 	Car::reporting();
 	myRide.vehicleInfo();//calling non-static methods. myRide is passed in for 'this'
 

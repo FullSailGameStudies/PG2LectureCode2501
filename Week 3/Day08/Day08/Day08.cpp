@@ -6,6 +6,8 @@
 #include "Inheritance.h"
 #include "Polymorphism.h"
 #include "Car.h"
+#include "FlyingCar.h"
+#include "Pistol.h"
 
 
 int main()
@@ -40,6 +42,10 @@ int main()
 
 	*/
 
+	Car myRide(1984, "DeLorean", "DMC-12");
+	FlyingCar jetsons(2025, "Tesla", "CyberPlane", 120);
+	std::cout << jetsons.vehicleInformation() << "\n";
+
 
 
 	/*
@@ -52,7 +58,8 @@ int main()
 			Add a constructor that calls the base constructor
 
 	*/
-
+	//Weapon wpn(5, 10);
+	Pistol pewpew(50, 100, 10, 15);
 
 
 

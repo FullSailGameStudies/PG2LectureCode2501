@@ -1,5 +1,5 @@
 #pragma once
-class Weapon
+class Weapon //abstract base class
 {
 private:
 	int mRange;
@@ -9,7 +9,7 @@ public:
 	Weapon(int range, int damage);
 
 	void showMe();
-	int calcDamage();
+	virtual int calcDamage() = 0;//make it pure virtual with '=0'
 
 	int range() const
 	{
