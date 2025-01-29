@@ -10,8 +10,20 @@
 #include "Pistol.h"
 
 
+void Counter()
+{
+	static int i = 0;
+	std::cout << i << " ";
+	i++;
+}
+
 int main()
 {
+	for (size_t i = 0; i < 10; i++)
+	{
+		Counter();
+	}
+	std::cin.get();
 	/*
 		╔═══════════════╗
 		║  Inheritance  ║
@@ -42,8 +54,11 @@ int main()
 
 	*/
 
+	Car::reporting();
 	Car myRide(1984, "DeLorean", "DMC-12");
 	FlyingCar jetsons(2025, "Tesla", "CyberPlane", 120);
+	myRide.modelYear(1985);
+	jetsons.modelYear(2026);
 	std::cout << jetsons.vehicleInformation() << "\n";
 
 

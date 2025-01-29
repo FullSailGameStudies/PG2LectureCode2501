@@ -47,5 +47,8 @@
     <ClInclude Include="..\..\..\Shared\Input\Input.h">
       <Filter>Misc\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Day11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -51,6 +51,31 @@ int main()
         Lecture code: set a filePath variable, open an output file, write some csv data to it
     */
 
+    std::string fileName = "pg2_2501.csv";
+    std::string path = "C:\\temp\\2501\\";
+    std::string fullPath = path + fileName;
+
+    char delimiter = '!';
+    
+    //1. open the file
+    std::ofstream outFile(fullPath);
+    if (outFile.is_open())
+    {
+        //2. write to the file
+        // << insertion operator
+        outFile << "Batman is the best.";
+        outFile << delimiter << "F5";
+        outFile << delimiter << true << delimiter << 420.12;
+        outFile << delimiter << "Aquaman smells like fish.";
+    }
+    else
+    {
+        std::cout << fullPath << " could not be opened.\n";
+    }
+
+
+    //3. close the file
+    outFile.close();
 
     /*
 
@@ -81,6 +106,50 @@ int main()
         
 
     */
+
+    //1. Open the file
+    std::ifstream inFile(fullPath);
+    if (inFile.is_open())
+    {
+        //2. read the file
+        std::string input;
+        std::getline(inFile, input);//reads 1 line from the file. looks for '\n'
+        std::cout << input << "\n";
+        
+        std::string data;
+        std::stringstream inputStream(input);
+        std::getline(inputStream, data, delimiter);
+        std::cout << data << "\n";
+
+        try
+        {
+            std::getline(inputStream, data, delimiter);
+            int iData = std::stoi(data);
+            std::cout << iData << "\n";
+        }
+        catch (const std::exception&ex)
+        {
+            std::cout << ex.what() << "\n";
+        }
+        std::getline(inputStream, data, delimiter);
+        bool bData = std::stoi(data) == 1;
+        std::cout << bData << "\n";
+
+
+        std::getline(inputStream, data, delimiter);
+        double dData = std::stod(data);
+        std::cout << dData << "\n";
+
+        std::getline(inputStream, data, delimiter);
+        std::cout << data << "\n";
+    }
+    else
+    {
+        std::cout << fullPath << " could not be opened.\n";
+    }
+
+    //3. close the file
+    inFile.close();
 
 
 

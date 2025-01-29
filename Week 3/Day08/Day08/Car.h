@@ -25,6 +25,10 @@ public:
 	}
 
 	//setter (mutator)
+	//
+	//non-static methods have a hidden parameter
+	//	called 'this'. pointer to the instance the method was called on.
+	//	can access non-static AND static members
 	void modelYear(int newModelYear)
 	{
 		if (newModelYear > 1908 && newModelYear < 2100)
@@ -33,6 +37,9 @@ public:
 		}
 	}
 
+	// static methods do NOT have a 'this' parameter
+	// they CANNOT access non-static members (data or methods)
+	// they can ONLY access static members
 	static void reporting()
 	{
 		//std::cout << "Model year: " << mModelYear << "\n"; //ERROR! cannot access non-static members
@@ -47,6 +54,7 @@ private:
 	int mFuelLevel;
 	int mMaxFuelLevel;
 
+	//static fields: shared by all instances of the class
 	static int mNumberOfCarsMade; //shared by ALL cars
 private:
 };
